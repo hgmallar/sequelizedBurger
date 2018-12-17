@@ -1,5 +1,5 @@
 {
-  "name": "burger",
+  "name": "sequelizedBurger",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,17 +9,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hgmallar/burger.git"
+    "url": "git+https://github.com/hgmallar/sequelizedBurger.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hgmallar/burger/issues"
+    "url": "https://github.com/hgmallar/sequelizedBurger/issues"
   },
-  "homepage": "https://github.com/hgmallar/burger#readme",
+  "homepage": "https://github.com/hgmallar/sequelizedBurger#readme",
   "dependencies": {
     "express": "^4.16.4",
     "express-handlebars": "^3.0.0",
-    "mysql": "^2.16.0"
+    "mysql": "^2.16.0",
+    "mysql2": "^1.6.4",
+    "sequelize": "^4.42.0"
   }
 }
