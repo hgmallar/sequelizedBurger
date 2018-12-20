@@ -6,3 +6,9 @@ body{
     font-family: 'Monoton', cursive;
     font-size: 2rem;
 }
+
+input[type="checkbox"] {
+    margin-top: -1px;
+    vertical-align: middle;
+    height: 100%;
+  }

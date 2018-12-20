@@ -1,29 +1,54 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(function () {
-    //When a devour it button is clicked
-    $(".devour-btn").on("click", function (event) {
-        //Get the id from the data-id attribute
-        var id = $(this).data("id");
-        
-        //changed the devoured state to true
-        var newDevouredState = {
-            devoured: true
+    // Make sure to preventDefault on a submit event.
+    event.preventDefault();
+
+    var newId;
+
+    //When the submit button is clicked for user
+    $(".user-form").on("submit", function (event) {
+        var ids = [];
+        $.each($("input[type='checkbox']:checked"), function () {
+            ids.push($(this).val());
+        });
+
+        //get the new user name
+        var newEater = {
+            name: $("#usr").val().trim(),
         };
 
-        // Send the PUT request.
-        $.ajax("/api/burgers/" + id, {
-            type: "PUT",
-            data: newDevouredState
-        }).then(
-            function () {
-                console.log("changed devoured to true");
-                // Reload the page to get the updated list
-                location.reload();
+        // Send the POST request.
+        $.ajax("/api/eaters", {
+            type: "POST",
+            data: newEater
+        }).then(function (eaterInfo) {
+            console.log("created new eater");
+
+            for (i = 0; i < ids.length; i++) {
+                //changed the devoured state to true
+                var newDevouredState = {
+                    devoured: true,
+                    eater_id: eaterInfo.id
+                };
+
+                // Send the PUT request.
+                $.ajax("/api/burgers/" + ids[i], {
+                    type: "PUT",
+                    data: newDevouredState
+                }).then(
+                    function () {
+                        console.log("changed devoured to true");
+
+                    }
+                );
             }
-        );
+            // Reload the page to get the updated list
+            location.reload();
+        });
+
     });
 
-    //When the submit button is clicked
+    //When the submit button is clicked for burger
     $(".create-form").on("submit", function (event) {
         // Make sure to preventDefault on a submit event.
         event.preventDefault();

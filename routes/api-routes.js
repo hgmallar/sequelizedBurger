@@ -13,8 +13,12 @@ module.exports = function (app) {
   // GET route for getting all of the todos
   app.get("/", function (req, res) {
     // findAll returns all entries for a table when used with no options
-    db.Burger.findAll({}).then(function (dbBurger) {
-      // We have access to the todos as an argument inside of the callback function
+    db.Burger.findAll({
+      order: [
+        ['burger_name', 'ASC'],
+      ],
+      include: [db.Eater]
+    }).then(function (dbBurger) {
       res.render("index", { burgers: dbBurger });
     });
   });
@@ -27,9 +31,18 @@ module.exports = function (app) {
     });
   });
 
+  app.post("/api/eaters", function (req, res) {
+    db.Eater.create({
+      name: req.body.name
+    }).then(function (dbEater) {
+      res.json(dbEater);
+    });
+  });
+
   app.put("/api/burgers/:id", function (req, res) {
     db.Burger.update({
-      devoured: true
+      devoured: req.body.devoured,
+      EaterId: req.body.eater_id
     },
       {
         where: {
