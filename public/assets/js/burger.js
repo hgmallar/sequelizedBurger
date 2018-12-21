@@ -17,7 +17,7 @@ $(function () {
             name: $("#usr").val().trim(),
         };
 
-        // Send the POST request.
+        // Send the POST request to create the new eater
         $.ajax("/api/eaters", {
             type: "POST",
             data: newEater
@@ -25,25 +25,23 @@ $(function () {
             console.log("created new eater");
 
             for (i = 0; i < ids.length; i++) {
-                //changed the devoured state to true
+                //changed the devoured state to true and change the eater_id from null to the id of the eater just created
                 var newDevouredState = {
                     devoured: true,
                     eater_id: eaterInfo.id
                 };
 
-                // Send the PUT request.
+                // Send the PUT request to update the burger
                 $.ajax("/api/burgers/" + ids[i], {
                     type: "PUT",
                     data: newDevouredState
                 }).then(
                     function () {
                         console.log("changed devoured to true");
-
                     }
                 );
             }
-            // Reload the page to get the updated list
-            location.reload();
+
         });
 
     });

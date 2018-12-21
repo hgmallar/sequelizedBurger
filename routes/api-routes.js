@@ -10,9 +10,9 @@ var db = require("../models");
 // Routes =============================================================
 module.exports = function (app) {
 
-  // GET route for getting all of the todos
+  // GET route for getting all of the burgers
   app.get("/", function (req, res) {
-    // findAll returns all entries for a table when used with no options
+    //get all of the burgers in sorted alphabetically by name
     db.Burger.findAll({
       order: [
         ['burger_name', 'ASC'],
@@ -23,6 +23,7 @@ module.exports = function (app) {
     });
   });
 
+  // POST route for creating a burger
   app.post("/api/burgers", function (req, res) {
     db.Burger.create({
       burger_name: req.body.burger_name
@@ -31,6 +32,7 @@ module.exports = function (app) {
     });
   });
 
+  // POST route for creating an eater
   app.post("/api/eaters", function (req, res) {
     db.Eater.create({
       name: req.body.name
@@ -39,6 +41,7 @@ module.exports = function (app) {
     });
   });
 
+  // PUT route for updating a burgers devoured state and eater_id
   app.put("/api/burgers/:id", function (req, res) {
     db.Burger.update({
       devoured: req.body.devoured,
@@ -54,7 +57,7 @@ module.exports = function (app) {
           // If no rows were changed, then the ID must not exist, so 404
           return res.status(404).end();
         } else {
-          res.status(200).end();
+          res.redirect("back");
         }
       });
   });
