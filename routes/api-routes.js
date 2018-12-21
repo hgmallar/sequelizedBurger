@@ -53,12 +53,6 @@ module.exports = function (app) {
         }
       })
       .then(function (dbBurger) {
-        if (dbBurger.changedRows == 0) {
-          // If no rows were changed, then the ID must not exist, so 404
-          return res.status(404).end();
-        } else {
-          res.redirect("back");
-        }
       });
   });
 

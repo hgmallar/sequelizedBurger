@@ -1,12 +1,13 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(function () {
-    // Make sure to preventDefault on a submit event.
-    event.preventDefault();
 
     var newId;
 
     //When the submit button is clicked for user
     $(".user-form").on("submit", function (event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
+
         var ids = [];
         $.each($("input[type='checkbox']:checked"), function () {
             ids.push($(this).val());
@@ -38,9 +39,12 @@ $(function () {
                 }).then(
                     function () {
                         console.log("changed devoured to true");
+                        // Reload the page to get the updated list
+                        
                     }
                 );
             }
+            location.reload();
 
         });
 
