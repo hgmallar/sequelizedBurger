@@ -15,8 +15,7 @@
             <div class="form-check">
                 <input class="form-check-input checkbox" type="checkbox" id={{id}} value={{id}}>
                 <label class="form-check-label d-block" for={{id}}>
-                    <p class="bg-primary text-white p-3 rounded my-2 text-left">{{id}}.
-                        {{burger_name}}</p>
+                    <p class="bg-primary text-white p-3 rounded my-2 text-left">{{burger_name}}</p>
                 </label>
             </div>
 
@@ -30,9 +29,9 @@
             {{#each burgers}}
                 {{#if devoured}}
                     {{#if EaterId}}
-                        <p class="bg-secondary text-white p-3 rounded my-2 text-left">{{id}}. {{Eater.name}} ate {{burger_name}} </p>
+                        <p class="bg-secondary text-white p-3 rounded my-2 text-left">{{Eater.name}} ate {{burger_name}} </p>
                     {{else}}
-                        <p class="bg-secondary text-white p-3 rounded my-2 text-left">{{id}}. {{burger_name}}</p>
+                        <p class="bg-secondary text-white p-3 rounded my-2 text-left">{{burger_name}}</p>
                     {{/if}}
                 {{/if}}
             {{/each}}
